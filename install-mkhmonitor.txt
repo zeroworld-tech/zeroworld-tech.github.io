@@ -6,28 +6,28 @@ cat >start-mikhmon <<EOL
 if pgrep "php" >/dev/null 2>&1 ; then
 killall php
 fi
-cd mikhmonv3
+cd mkhmonitor
 php -S 0.0.0.0:8080
 EOL
 cat >update-mikhmon <<EOL
 #bin/bash
 mkdir ~/backup-mikhmon
-cp ~/mikhmonv3/include/config.php ~/backup-mikhmon/config.php
-cp -rf ~/mikhmonv3/voucher/. ~/backup-mikhmon/voucher/
-cp -rf ~/mikhmonv3/img/. ~/backup-mikhmon/img/
-rm -rf mikhmonv3
+cp ~/mkhmonitor/include/config.php ~/backup-mikhmon/config.php
+cp -rf ~/mkhmonitor/voucher/. ~/backup-mikhmon/voucher/
+cp -rf ~/mkhmonitor/img/. ~/backup-mikhmon/img/
+rm -rf mkhmonitor
 rm ~/backup-mikhmon/voucher/print.php
 rm ~/backup-mikhmon/voucher/printbt.php
 git clone https://github.com/zeroworld-tech/mkhmonitor.git
-cp ~/backup-mikhmon/config.php ~/mikhmonv3/include/config.php
-cp -rf ~/backup-mikhmon/voucher/. ~/mikhmonv3/voucher/
-cp -rf ~/backup-mikhmon/img/. ~/mikhmonv3/img/
+cp ~/backup-mikhmon/config.php ~/mkhmonitor/include/config.php
+cp -rf ~/backup-mikhmon/voucher/. ~/mkhmonitor/voucher/
+cp -rf ~/backup-mikhmon/img/. ~/mkhmonitor/img/
 rm -rf ~/backup-mikhmon
 ./start-mikhmon
 EOL
 cat >remove-mikhmon <<EOL
 #bin/bash
-rm -rf mikhmonv3
+rm -rf mkhmonitor
 EOL
 cat >.bashrc <<EOL	
 ~/start-mikhmon	
